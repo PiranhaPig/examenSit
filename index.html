@@ -6,22 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>model viewer test</title>
     <script> scr="main.js"</script>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
     <div class="sideBar">
         <img id="logo" src=".images/logo.png" alt="">
     </div>
+    <div>
+        <div class="controls" id="color-controls">
+            <button data-color="#ff0000">Red</button>
+            <button data-color="#00ff00">Green</button>
+            <button data-color="#0000ff">Blue</button>
+    </div>
     <div class="modelFrame">
-        <model-viewer alt="rijlaars" 
+        <model-viewer alt="rijlaars"
             poster="./images/pleasewait.png"
             disable-tap
             disable-pan
-            src="./models/laars.gltf"
+            src="./models/rijlaars.glb"
             shadow-intensity="1" camera-controls
             camera-target="0m 0m 0m">
+
+            
+        </div>
+        <div class="controls" id ="material-controls">
+            <p>Normals</p>
+            <select id="normals2">
+                <option>None</option>
+                <option value="assets/models/materials/wildleder-SW.jpg">Damaged helmet</option>
+                <option value="assets/models/materials/creases.jpg">Lantern Pole</option>
+                <option value="assets/models/materials/Leather0021_Big.jpg">Water Bottle</option>
+            </select>
+            <p>Custom texture name</p>
+            <p id="texture-name">None</p>
+            <p>Image name from file name</p>
+            <p id="image-name">None</p>
+        </div>
+
             </model-viewer>
+
+
     </div>
+
+    
+
+
 </body>
 </html>
