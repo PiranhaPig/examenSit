@@ -6,8 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Use it like any other HTML element -->
-    <model-viewer id="shoe" alt="Schoen 1" src="assets/models/schoen1.gltf" shadow-intensity="1" camera-controls touch-action="pan-y">
+    <model-viewer id="shoe" alt="Schoen" src="models/laars.gltf" shadow-intensity="1" camera-controls touch-action="pan-y">
         <div class="controls" id="color-controls">
             <button data-color="#ff0000">Red</button>
             <button data-color="#00ff00">Green</button>
@@ -17,9 +16,9 @@
             <p>Normals</p>
             <select id="normals2">
                 <option>None</option>
-                <option value="assets/models/materials/wildleder-SW.jpg">Damaged helmet</option>
-                <option value="assets/models/materials/creases.jpg">Lantern Pole</option>
-                <option value="assets/models/materials/Leather0021_Big.jpg">Water Bottle</option>
+                <option value="assets/models/wildleder-SW.jpg">Damaged helmet</option>
+                <option value="assets/models/creases.jpg">Lantern Pole</option>
+                <option value="assets/models/Leather0021_Big.jpg">Water Bottle</option>
             </select>
             <p>Custom texture name</p>
             <p id="texture-name">None</p>
@@ -28,37 +27,32 @@
         </div>  
     </model-viewer>
     <script type="module">
-        const modelViewerTexture = document.querySelector("model-viewer#shoe");
-        const textureName = document.querySelector('#texture-name');
-        const imageName = document.querySelector('#image-name');
+    const modelViewerTexture = document.querySelector("model-viewer#shoe");
+    const textureName = document.querySelector('#texture-name');
+    const imageName = document.querySelector('#image-name');
 
-        modelViewerTexture.addEventListener("load", () => {
+    modelViewerTexture.addEventListener("load", () => {
 
-        const material = modelViewerTexture.model.materials[0];
+    const material = modelViewerTexture.model.materials[0];
 
-        const createAndApplyTexture = async (channel, event) => {
-            if (event.target.value == "None") {
-        =
-            material[channel].setTexture(null);
-        
-            textureName.innerText = "None";
-            imageName.innerText = "None";
-            } else if (event.target.value) {
-  
-            const texture = await modelViewerTexture.createTexture(event.target.value);
-       
-            texture.name = event.target.options[event.target.selectedIndex].text.replace(/ /g, "_").toLowerCase();
-          
-            material[channel].setTexture(texture);
-            textureName.innerText = texture.name;
-            imageName.innerText = texture.source.name;
-            }
+    const createAndApplyTexture = async (channel, event) => {
+        if (event.target.value == "None") {
+        material[channel].setTexture(null);
+        textureName.innerText = "None";
+        imageName.innerText = "None";
+        } else if (event.target.value) {
+        const texture = await modelViewerTexture.createTexture(event.target.value);
+        texture.name = event.target.options[event.target.selectedIndex].text.replace(/ /g, "_").toLowerCase();
+        material[channel].setTexture(texture);
+        textureName.innerText = texture.name;
+        imageName.innerText = texture.source.name;
         }
+    }
 
-        document.querySelector('#normals2').addEventListener('input', (event) => {
-            createAndApplyTexture('normalTexture', event);
-        });
-        });
+    document.querySelector('#normals2').addEventListener('input', (event) => {
+        createAndApplyTexture('normalTexture', event);
+    });
+    });
 
     </script>
     <script>
