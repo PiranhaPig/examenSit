@@ -8,68 +8,78 @@
     <link rel="stylesheet" href="Styles.css">
     <link rel="main.js" href="main.js">
 
-    <title>ahahah</title>
+    <title></title>
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
 </head>
 <body>
-    <div class="sideBar">
-        <img id="logo" src=".images/logo.png" alt="">
-        <div class="miniBox">
-            <div class="controls" id="color-controls">
-                <button data-color="#ff0000">Red</button>
-                <button data-color="#00ff00">Green</button>
-                <button data-color="#0000ff">Blue</button>
-            </div>
-            <div class="controls" id ="material-controls">
-                <p>Normals</p>
-                <select id="normals2">
-                    <option>None</option>
-                    <option value="assets/models/wildleder-SW.jpg">Damaged helmet</option>
-                    <option value="assets/models/creases.jpg">Lantern Pole</option>
-                    <option value="assets/models/Leather0021_Big.jpg">Water Bottle</option>
-                </select>
-                <p>Custom texture name</p>
-                <p id="texture-name">None</p>
-                <p>Image name from file name</p>
-                <p id="image-name">None</p>
-            </div>
-        </div>
+    <div class="menuBar">
+        <option class=".menuButton" id="">Options</option>
+        <button class=".menuButton" id="">Edit</button>
+        <a class=".menuButton" href="./ImportNew.php">Import</a>
     </div>
+<div class="sideBar">
+    <div class="sideBarContent">
+        <div class="">
+
+        </div>
+            <div class="ParametersButtons">
+                <button class="buttonColour" id="">Kleur</button>
+                <button class="buttonMaterial" id="">Materiaal</button>
+            </div>
+           
+    </div>
+    <div class="MaterialColourContainer">
+            <div class="Material"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+            <div class="Material"><img src="icwi"></div>
+        </div> 
+</div>
     <div class="modelFrame">
-        <model-viewer class="rijlaars"
-            poster="./images/pleasewait.png"
-            disable-tap
-            disable-pan
-            src="./models/laars.gltf"
-            shadow-intensity="1" camera-controls
-            camera-target="0m 0m 0m">
-
-
-        </model-viewer> 
-        </div>
+    <model-viewer id="pickMaterial" src="models/laars.gltf" ar ar-modes="webxr" shadow-intensity="0" camera-controls touch-action="pan-y">
         <div class="controls" id ="material-controls">
-            <p>Normals</p>
-            <select id="normals2">
-                <option>None</option>
-                <option value="assets/models/materials/wildleder-SW.jpg">Damaged helmet</option>
-                <option value="assets/models/materials/creases.jpg">Lantern Pole</option>
-                <option value="assets/models/materials/Leather0021_Big.jpg">Water Bottle</option>
-            </select>
-            <p>Custom texture name</p>
-            <p id="texture-name">None</p>
-            <p>Image name from file name</p>
-            <p id="image-name">None</p>
-        </div>
+            <div id="fulltexture">
+                <button>None</button>
+                <button data-norm="models/wildleder-NORM.jpg" data-bumb="models/wildleder-bUMB.jpg" data-sw="models/wildleder-SW.jpg">wildleder</button> 
+                <button data-norm="models/Leather0021_Big.jpg" data-bumb="models/Leather0021_Big_001.jpg" data-sw="models/Leather0021_Big.png">Leather</button>
+                <button data-norm="norm.jpg" data-bumb="bumb.jpg" data-sw="sw.jpg">name</button>
+            </div>
+        </div>  
+    </model-viewer>
+    <script type="module">
+    const modelViewer = document.querySelector("model-viewer#pickMaterial");
 
-            
-
-
-    </div>
-
+    var TextureBUMB = "models/wildleder-NORM.jpg";
+    var TextureNORM = "models/wildleder-bUMB.jpg";
+    var TextureSW = "models/wildleder-SW.jpg";
     
+modelViewer.addEventListener("load", () => {
+  const ApplyTexture = (event) => {
+    const material = modelViewer.materialFromPoint(event.clientX, event.clientY);
+    if (material != null) {
+      material.pbrMetallicRoughness.
+      setBaseColorFactor([Math.random(), Math.random(), Math.random()]);
+    }
+  };
+  const Collect = 
+  
+  modelViewer.addEventListener("click", ApplyTexture);
 
 
+// Takes values from the different buttons and attaches them to the different var's to later use for the texture aplications process.
+document.querySelector('#fulltexture').addEventListener('click', Collect);
+  });
+
+    </script>    
+    </div>
 </body>
 </html>
