@@ -2,26 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>model viewer test</title>
-    <script> scr="main.js"</script>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-    <link rel="stylesheet" href="stylesheet.css">
+    <title>Document</title>
 </head>
 <body>
-    <div class="sideBar">
-        <img id="logo" src=".images/logo.png" alt="">
+    <div class="dropdown">
+        <button onclick="toggleDropdown()" class="dropbtn">Selecteer Model</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="#" onclick="changeModel('models/laars.gltf')">Model 1</a>
+            <a href="#" onclick="changeModel('models/Laval.gltf')">Model 2</a>
+            <a href="#" onclick="changeModel('models/rijlaars.glb')">Model 3</a>
+        </div>
     </div>
-    <div class="modelFrame">
-        <model-viewer alt="rijlaars" 
-            poster="./images/pleasewait.png"
-            disable-tap
-            disable-pan
-            src="./models/laars.gltf"
-            shadow-intensity="1" camera-controls
-            camera-target="0m 0m 0m">
-            </model-viewer>
-    </div>
+    <model-viewer id="shoe" camera-controls touch-action="pan-y" src="models/laars.gltf" ar alt="A 3D model of a Shoe"></model-viewer>
+    
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Functie om het model te veranderen
+        function changeModel(modelSrc) {
+            document.getElementById("shoe").src = modelSrc;
+            toggleDropdown(); // Verberg het dropdown-menu na het selecteren van een model
+        }
+
+        // Sluit het dropdown-menu als de gebruiker ergens buiten het menu klikt
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </body>
+
+<style>
+    .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.show {display: block;}
+
+model-viewer {
+  width: 1000px;
+  height: 800px;
+}
+</style>
 </html>
