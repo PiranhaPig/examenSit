@@ -64,6 +64,24 @@
                 </div>  
             </model-viewer>
         </div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>GltfPath</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($models as $model): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($model['Id']); ?></td>
+                        <td><?php echo htmlspecialchars($model['Name']); ?></td>
+                        <td><?php echo htmlspecialchars($model['GltfPath']); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </body>
 </html>
 
@@ -120,3 +138,18 @@
         }
     }
 </script>
+
+<?php
+require_once "Database.php";
+
+$database = new Database();
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $Name = $_POST["Name"];
+    $GltfPath = $_POST["GltfPath"];
+    $result = $database->Create($Name, $GltfPath);
+    echo $result;
+}
+
+$models = $database->GetModels();
+?>
