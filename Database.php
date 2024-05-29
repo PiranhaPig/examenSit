@@ -38,6 +38,13 @@ class Database
         $stmt = $this->con->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    function GetTextures()
+    {
+        $sql = "SELECT * FROM Textures";
+        $stmt = $this->con->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 
 

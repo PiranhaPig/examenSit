@@ -10,6 +10,10 @@
         float: right;
         }
 
+    .controls{
+        margin: auto;
+    }
+
     .dropbtn {
         background-color: #4CAF50;
         color: white;
@@ -76,17 +80,12 @@
     float: left;
     }
 
-    .modelFrame{
-        padding: 16px;
-        float: right;
-        height: 100%;
-        width: 75%;
-    }
+    
     
     model-viewer{
-        height: 100PX;
+        height: 550PX;
         width: 60%;
-        margin-left: 480px;
+        margin-left: 510px;
     }
 
     .ParametersButtons{
