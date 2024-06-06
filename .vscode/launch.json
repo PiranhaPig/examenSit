@@ -10,7 +10,7 @@
             "request": "launch",
             "reAttach": true,
             "name": "Launch Firefox",
-            "url": "http://localhost:5000/examenSite-NuggieTest",
+            "url": "http://localhost:5000/examenSite-CodeMergeBranch",
             "webRoot": "${workspaceFolder}"
         }
     ]

@@ -10,6 +10,7 @@ class Database
 
 
     function __construct()
+    //deze functie zorgt voor de conectie tussen de database en de code
     {
         $this->con = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
         if ($this->con) {
@@ -20,6 +21,7 @@ class Database
     }
 
     function Create($Name, $GltfPath)
+    //deze functie zorgt voor ervoor dat je iets in de tabel 3dModels kan toevoegen en maakt gebruik van een insert statement
     {
         $sql = "INSERT INTO 3dModels (Name, GltfPath) VALUES (:Name, :GltfPath)";
         $stmt = $this->con->prepare($sql);
@@ -33,31 +35,14 @@ class Database
     }
 
     function GetModels()
+    //deze functie zorgt ervoor dat je dingen uit de tabel 3dModels kan lezen met een select functie
     {
         $sql = "SELECT * FROM 3dModels";
         $stmt = $this->con->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+            echo $row["name"];
+        }
     }
-    function GetTextures()
-    {
-        $sql = "SELECT * FROM Textures";
-        $stmt = $this->con->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
