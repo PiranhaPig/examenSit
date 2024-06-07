@@ -16,21 +16,35 @@
             <div class="controls" id ="Texture-controls">
                 <p>Normals</p>
                 <select id="normals">
-                    <option value="models/wildleder-NORM.jpg">wildleder</option>
+                    <option value="models/wildleder-NORM.jpg">Wildleder</option>
+                    <option value="models/Fabric061_1K-JPG_NormalGL.jpg">Canvas</option>
+                    <option value="models/Metal029_1K-JPG_NormalGL.jpg">Rubber</option>
                 </select>
                 <p>pbrMetallicRoughness</p>
                 <select id="pbrMetallicRoughness">
-                    <option value="models/wildleder-bUMB.jpg">wildleder</option>
+                    <option value="models/wildleder-bUMB.jpg">Wildleder</option>
+                    <option value="models/Fabric061_1K-JPG_Roughness.jpg">Canvas</option>
+                    <option value="models/Metal029_1K-JPG_Roughness.jpg">Rubber</option>
                 </select>
                 <p>Emission</p>
                 <select id="emission">
-                    <option value="models/wildleder-SW.jpg">wildleder</option>
+                    <option value="models/wildleder-SW.jpg">Wildleder</option>
+                    <option value="models/Fabric061_1K-JPG_Displacement.jpg">Canvas</option>
+                    <option value="models/Metal029_1K-JPG_Displacement.jpg">Rubber</option>
                 </select>
                 <P>Color</P>
                 <select id="Color">
                     <option value="#ff0000">Red</option>
                     <option value="#00ff00">Green</option>
                     <option value="#0000ff">Blue</option>
+                    <option value="#ffffff">white</option>
+                    <option value="#000000">Black</option>
+                    <option value="#AFD8BD">Mint</option>
+                    <option value="#FF5733 ">Dark Brown</option>
+                    <option value="#C8A2C8">Lilac</option>
+                    <option value="#4B0082">Indigo</option>
+                    <option value="#C9A0DC">Wisteria</option>
+                    
                 </select>
             </div>
             
