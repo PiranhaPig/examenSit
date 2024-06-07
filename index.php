@@ -33,7 +33,7 @@
                     <option value="models/Metal029_1K-JPG_Displacement.jpg">Rubber</option>
                 </select>
                 <P>Color</P>
-                <select id="Color">
+                <select id="color">
                     <option value="#ff0000">Red</option>
                     <option value="#00ff00">Green</option>
                     <option value="#0000ff">Blue</option>
@@ -51,7 +51,7 @@
             <!-- deze dropdown zorgt ervoor dat je verschillende modellen kunt uitkiezen -->
             <div class="dropdown">
             <button onclick="toggleDropdown()" class="dropbtn">Selecteer Model</button>
-            <div id="myDropdown" class="dropdown-content">
+            <div id="myDropdown" class="dropdownContent">
                 <a href="#" onclick="changeModel('models/laars.gltf')">Model 1</a>
                 <a href="#" onclick="changeModel('models/Aurelio_Jayson.glb')">Model 2</a>
                 <a href="#" onclick="changeModel('models/rijlaars.glb')">Model 3</a>
@@ -69,7 +69,7 @@
         </div>
             <div class="modelFrame">
             <!-- dit zorgt ervoor dat het model kan worden ingeladen in de webbrouser -->
-            <model-viewer id="Models" src="models/laars.gltf" ar ar-modes="webxr" shadow-intensity="0" camera-controls touch-action="pan-y" disable-tap disable-pan></model-viewer>
+            <model-viewer id="models" src="models/laars.gltf" ar ar-modes="webxr" shadow-intensity="0" camera-controls touch-action="pan-y" disable-tap disable-pan></model-viewer>
         </div>
 
         
@@ -85,33 +85,33 @@
 
 <script type="module">
             //deze functie zorgt voor het aanpassen en toepassen van kleuren en textures
-            const modelViewer = document.querySelector("model-viewer#Models");
+            const MODELVIEWER = document.querySelector("model-viewer#Models");
             
-            modelViewer.addEventListener("load", () => {
-                const ApplyTexture = async (event) => {
+            MODELVIEWER.addEventListener("load", () => {
+                const APPLYTEXTURE = async (event) => {
 
                     let appliedTextures = {};
 
-                    const material = modelViewer.materialFromPoint(event.clientX, event.clientY);
+                    const MATERIAL = MODELVIEWER.materialFromPoint(event.clientX, event.clientY);
 
-                    appliedTextures.normals = await modelViewer.createTexture(document.querySelector("#normals").value);
-                    appliedTextures.pbrMetallicRoughness = await modelViewer.createTexture(document.querySelector("#pbrMetallicRoughness").value);
-                    appliedTextures.emission = await modelViewer.createTexture(document.querySelector("#emission").value);
+                    appliedTextures.normals = await MODELVIEWER.createTexture(document.querySelector("#normals").value);
+                    appliedTextures.pbrMetallicRoughness = await MODELVIEWER.createTexture(document.querySelector("#pbrMetallicRoughness").value);
+                    appliedTextures.emission = await MODELVIEWER.createTexture(document.querySelector("#emission").value);
 
-                    const colorString = await document.querySelector('#Color').value;
+                    const COLORSTRING = await document.querySelector('#color').value;
 
-                    if (material != null) {
-                        if (appliedTextures.normals) material.normalTexture.setTexture(appliedTextures.normals);
+                    if (MATERIAL != null) {
+                        if (appliedTextures.normals) MATERIAL.normalTexture.setTexture(appliedTextures.normals);
 
-                        if (appliedTextures.pbrMetallicRoughness) material.pbrMetallicRoughness.metallicRoughnessTexture.setTexture(appliedTextures.pbrMetallicRoughness);
+                        if (appliedTextures.pbrMetallicRoughness) MATERIAL.pbrMetallicRoughness.metallicRoughnessTexture.setTexture(appliedTextures.pbrMetallicRoughness);
 
-                        if (appliedTextures.emission) material.emissiveTexture.setTexture(appliedTextures.emission);
+                        if (appliedTextures.emission) MATERIAL.emissiveTexture.setTexture(appliedTextures.emission);
 
-                        if (colorString) material.pbrMetallicRoughness.setBaseColorFactor(colorString);;
+                        if (COLORSTRING) MATERIAL.pbrMetallicRoughness.setBaseColorFactor(COLORSTRING);;
                     }
                 };
                 
-                modelViewer.addEventListener("click", ApplyTexture);
+                modelViewer.addEventListener("click", APPLYTEXTURE);
 
             });
         </script>
@@ -123,14 +123,14 @@
 
             // Functie om het model te veranderen
             function changeModel(modelSrc) {
-                document.getElementById("Models").src = modelSrc;
+                document.getElementById("models").src = modelSrc;
                 toggleDropdown(); // Verberg het dropdown-menu na het selecteren van een model
             }
 
             // Sluit het dropdown-menu als de gebruiker ergens buiten het menu klikt
             window.onclick = function(event) {
                 if (!event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var dropdowns = document.getElementsByClassName("dropdownContent");
                     for (var i = 0; i < dropdowns.length; i++) {
                         var openDropdown = dropdowns[i];
                         if (openDropdown.classList.contains('show')) {
