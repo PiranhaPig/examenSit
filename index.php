@@ -51,7 +51,7 @@
             <!-- deze dropdown zorgt ervoor dat je verschillende modellen kunt uitkiezen -->
             <div class="dropdown">
             <button onclick="toggleDropdown()" class="dropbtn">Selecteer Model</button>
-            <div id="myDropdown" class="dropdownContent">
+            <div id="myDropdown" class="dropdown-content">
                 <a href="#" onclick="changeModel('models/laars.gltf')">Model 1</a>
                 <a href="#" onclick="changeModel('models/Aurelio_Jayson.glb')">Model 2</a>
                 <a href="#" onclick="changeModel('models/rijlaars.glb')">Model 3</a>
@@ -69,7 +69,7 @@
         </div>
             <div class="modelFrame">
             <!-- dit zorgt ervoor dat het model kan worden ingeladen in de webbrouser -->
-            <model-viewer id="models" src="models/laars.gltf" ar ar-modes="webxr" shadow-intensity="0" camera-controls touch-action="pan-y" disable-tap disable-pan></model-viewer>
+            <model-viewer id="Models" src="models/laars.gltf" ar ar-modes="webxr" shadow-intensity="0" camera-controls touch-action="pan-y" disable-tap disable-pan></model-viewer>
         </div>
 
         
@@ -123,14 +123,14 @@
 
             // Functie om het model te veranderen
             function changeModel(modelSrc) {
-                document.getElementById("models").src = modelSrc;
+                document.getElementById("Models").src = modelSrc;
                 toggleDropdown(); // Verberg het dropdown-menu na het selecteren van een model
             }
 
             // Sluit het dropdown-menu als de gebruiker ergens buiten het menu klikt
             window.onclick = function(event) {
                 if (!event.target.matches('.dropbtn')) {
-                    var dropdowns = document.getElementsByClassName("dropdownContent");
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
                     for (var i = 0; i < dropdowns.length; i++) {
                         var openDropdown = dropdowns[i];
                         if (openDropdown.classList.contains('show')) {
