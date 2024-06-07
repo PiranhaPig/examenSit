@@ -111,7 +111,7 @@
                     }
                 };
                 
-                modelViewer.addEventListener("click", APPLYTEXTURE);
+                MODELVIEWER.addEventListener("click", APPLYTEXTURE);
 
             });
         </script>
